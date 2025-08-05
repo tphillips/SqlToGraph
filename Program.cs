@@ -1,7 +1,7 @@
 ﻿/*
  * SqlToGraph - Professional SQL Data Visualization Tool
+ * By Tristan Phillips
  * 
- * Copyright (c) 2025 SqlToGraph Contributors
  * Licensed under the MIT License (see LICENSE file for details)
  * 
  * A high-performance C# console application that executes SQL queries against 
