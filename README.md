@@ -8,7 +8,9 @@
 
 A high-performance C# console application that executes SQL queries against a MySQL database and generates professional PDF reports with high-resolution line charts and trend analysis.
 
-![Sample Output](https://img.shields.io/badge/Sample-PDF%20Output-blue.svg)
+Simply add one or more queries terminated with ; to a SQL file that return Just 2 cols. X and Y. Add a chart title with a -- comment above the query.  
+
+Perfect for automated management information visualization.
 
 ## 📋 Table of Contents
 
