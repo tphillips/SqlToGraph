@@ -119,9 +119,9 @@ dotnet run "Server=localhost;Port=3306;Database=analytics;Uid=user;Pwd=password;
 ### Example SQL File
 ```sql
 -- Daily Activity Data
-SELECT 7 as Y, CAST('2025-08-05' AS CHAR) as X
-UNION ALL SELECT 13, CAST('2025-08-04' AS CHAR)
-UNION ALL SELECT 5, CAST('2025-08-01' AS CHAR);
+SELECT 7 as Y, '2025-08-05' as X
+UNION ALL SELECT 13, 2025-08-04
+UNION ALL SELECT 5, 2025-08-01;
 
 -- Weekly Sales Performance
 SELECT sales as Y, CAST(week_ending AS CHAR) as X
@@ -134,7 +134,6 @@ FROM (
 
 ### Important Notes
 - **Column Names**: Must be exactly `X` and `Y` (case-insensitive)
-- **Date Casting**: Use `CAST(date_column AS CHAR)` for date columns to ensure proper string handling
 - **Y Values**: Must be numeric (INTEGER, DECIMAL, FLOAT, etc.)
 - **X Values**: Can be dates (YYYY-MM-DD format) or categorical strings
 
@@ -172,19 +171,7 @@ Each query generates one page containing:
 3. **Data Points**: Listed below chart (if ≤20 points)
 
 ### File Naming
-Generated PDFs are named: `SqlToGraph-YYYY-MM-DD.pdf`
-
-### Console Output
-```
-Fill missing days option enabled - will add missing dates with 0 values for time series data.
-Successfully connected to MySQL database.
-Executing query: Daily Activity Data
-  Filling missing days from 2025-07-28 to 2025-08-05
-  Added 4 missing days with 0 values (total: 9 points)
-  Found 9 data points.
-PDF report generated successfully.
-PDF saved to: /path/to/SqlToGraph-2025-08-05.pdf
-```
+Generated PDFs are named: `Report-YYYY-MM-DD.pdf`
 
 ## ⚠️ Error Handling
 
