@@ -77,3 +77,5 @@ logs/
 # Runtime test files
 demo_test.cs.bak
 Program.cs.backup
+AutoMetrics.sql
+Report-*.pdf
