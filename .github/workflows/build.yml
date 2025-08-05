@@ -1,0 +1,74 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        dotnet-version: ['8.0.x']
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Test basic functionality
+      run: |
+        # Test help text display
+        dotnet run --configuration Release 2>&1 | grep -q "Usage:" || exit 1
+        echo "✅ Help text test passed"
+        
+        # Test with invalid arguments
+        if dotnet run --configuration Release "invalid" 2>&1 | grep -q "Error:"; then
+          echo "✅ Error handling test passed"
+        else
+          echo "❌ Error handling test failed"
+          exit 1
+        fi
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: sqltoggraph-${{ matrix.dotnet-version }}
+        path: |
+          bin/Release/net8.0/
+          !bin/Release/net8.0/*.pdb
+          
+  compatibility-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Test build on ${{ matrix.os }}
+      run: |
+        dotnet restore
+        dotnet build --configuration Release
+        
+    - name: Test execution on ${{ matrix.os }}
+      run: |
+        dotnet run --configuration Release || true

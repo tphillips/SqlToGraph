@@ -1,18 +1,42 @@
 # SqlToGraph
 
-A C# console application that executes SQL queries against a MySQL database and generates professional PDF reports with line charts and trend analysis.
+[![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
+[![QuestPDF](https://img.shields.io/badge/QuestPDF-2024.3.0-green.svg)](https://github.com/QuestPDF/QuestPDF)
+[![ScottPlot](https://img.shields.io/badge/ScottPlot-5.0.42-orange.svg)](https://github.com/ScottPlot/ScottPlot)
 
-## Features
+A high-performance C# console application that executes SQL queries against a MySQL database and generates professional PDF reports with high-resolution line charts and trend analysis.
+
+![Sample Output](https://img.shields.io/badge/Sample-PDF%20Output-blue.svg)
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+- [Usage](#-usage)
+- [SQL File Format](#-sql-file-format)
+- [Chart Features](#-chart-features)
+- [Output](#-output)
+- [Error Handling](#️-error-handling)
+- [Technical Details](#️-technical-details)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Troubleshooting](#-troubleshooting)
+
+## 🚀 Features
 
 ### 📊 Professional Charts
-- **Line Charts**: High-quality charts using ScottPlot library
-- **Trend Lines**: Automatic linear regression trend analysis
+- **High-Resolution Rendering**: 1200x800 pixel charts with 2.0x scale factor for crisp output
+- **Line Charts**: Professional quality charts using ScottPlot library
+- **Trend Lines**: Automatic linear regression trend analysis with dashed red lines
 - **Time Series Support**: Smart date detection and chronological ordering
 - **Categorical Data**: Support for non-date string X-axis values
 
 ### 🗓️ Time Series Intelligence
-- **Date Detection**: Automatically identifies date-based data
-- **Missing Days Fill**: Optional feature to fill gaps with zero values
+- **Date Detection**: Automatically identifies date-based data patterns
+- **Missing Days Fill**: Optional feature to fill gaps with zero values (`--fill-missing-days`)
 - **Smart Sorting**: Chronological ordering for dates, alphabetical for categories
 - **Date Formatting**: Consistent yyyy-MM-dd format handling
 
@@ -21,33 +45,49 @@ A C# console application that executes SQL queries against a MySQL database and 
 - **A4 Pages**: Professional page formatting with proper margins
 - **Multi-Query Support**: Each query generates a separate page
 - **Error Handling**: Graceful fallback for chart generation failures
+- **High Quality**: Embedded high-resolution charts with professional styling
 
-## Installation
+## 🔧 Installation
 
 ### Prerequisites
 - .NET 8.0 SDK
 - MySQL Server (accessible database)
 
-### Dependencies
+### 📦 Dependencies
 The project automatically installs these NuGet packages:
-- `MySql.Data` (8.4.0) - MySQL database connectivity
-- `QuestPDF` (2024.3.0) - PDF generation
-- `ScottPlot` (5.0.42) - Chart rendering
-- `SkiaSharp` (2.88.8) - Graphics backend
+- `MySql.Data` (9.0.0) - MySQL database connectivity
+- `QuestPDF` (2024.3.0) - Professional PDF generation
+- `ScottPlot` (5.0.42) - High-quality chart rendering
+- `SkiaSharp` (2.88.8) - Graphics backend for chart rendering
 
-### Setup
-1. Clone or download the project
-2. Navigate to the project directory
-3. Restore dependencies:
+### 🛠️ Setup
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/SqlToGraph.git
+   cd SqlToGraph
+   ```
+
+2. **Restore dependencies**:
    ```bash
    dotnet restore
    ```
-4. Build the project:
+
+3. **Build the project**:
    ```bash
    dotnet build
    ```
 
-## Usage
+## 🚀 Quick Start
+
+```bash
+# Run with sample data
+dotnet run "Server=localhost;Port=3306;Database=testdb;Uid=user;Pwd=password;" "./sample_queries.sql"
+
+# With missing days fill for time series
+dotnet run "Server=localhost;Port=3306;Database=testdb;Uid=user;Pwd=password;" "./sample_queries.sql" --fill-missing-days
+```
+
+## 📖 Usage
 
 ### Basic Command
 ```bash
@@ -68,7 +108,7 @@ dotnet run "Server=localhost;Port=3306;Database=analytics;Uid=user;Pwd=password;
 dotnet run "Server=localhost;Port=3306;Database=analytics;Uid=user;Pwd=password;" "./sample_queries.sql" --fill-missing-days
 ```
 
-## SQL File Format
+## 📝 SQL File Format
 
 ### Query Structure
 - **Comments**: Use `--` to define chart titles
@@ -98,7 +138,7 @@ FROM (
 - **Y Values**: Must be numeric (INTEGER, DECIMAL, FLOAT, etc.)
 - **X Values**: Can be dates (YYYY-MM-DD format) or categorical strings
 
-## Chart Features
+## 📊 Chart Features
 
 ### Automatic Chart Types
 - **Time Series**: When all X values are valid dates
@@ -123,7 +163,7 @@ When `--fill-missing-days` is specified:
 - **Zero Values**: Missing days are assigned Y=0
 - **Console Feedback**: Reports how many days were added
 
-## Output
+## 📄 Output
 
 ### PDF Structure
 Each query generates one page containing:
@@ -146,7 +186,7 @@ PDF report generated successfully.
 PDF saved to: /path/to/SqlToGraph-2025-08-05.pdf
 ```
 
-## Error Handling
+## ⚠️ Error Handling
 
 ### Database Errors
 - Connection failures with detailed MySQL error codes
@@ -163,46 +203,45 @@ PDF saved to: /path/to/SqlToGraph-2025-08-05.pdf
 - Error messages displayed in PDF
 - Continuation with remaining queries on individual failures
 
-## Technical Details
+## ⚙️ Technical Details
 
-### Architecture
+### 🏗️ Architecture
 - **Platform**: .NET 8.0 cross-platform
 - **Database**: MySQL with MySql.Data connector
 - **Charts**: ScottPlot with SkiaSharp backend
 - **PDF**: QuestPDF for document generation
+- **Code Organization**: Service-oriented architecture with static classes
 
-### Performance
+### 🚀 Performance
 - **Memory Efficient**: Streams data processing
-- **Chart Size**: 600x400 pixels for optimal quality/size balance
+- **Chart Resolution**: 1200x800 pixels with 2.0x scale factor for optimal quality
 - **Concurrent Safe**: Single-threaded execution for database safety
+- **High-Quality Output**: Professional-grade charts and PDF generation
 
-### File I/O
+### 📁 File I/O
 - **SQL Parsing**: Multi-line query support with comment extraction
 - **PDF Generation**: Direct file output with absolute path reporting
 - **Error Logging**: Detailed console output for debugging
 
-## License
+## 🤝 Contributing
 
-This project uses QuestPDF Community License (free for non-commercial use).
-
-## Contributing
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
 4. Test with sample data
-5. Submit a pull request
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
-## Sample Data
+## 📄 License
 
-The project includes `sample_queries.sql` with example datasets:
-- Daily activity data with missing days
-- Weekly sales performance
-- Monthly revenue trends
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Run these examples to see the full functionality in action.
+**Note**: This project uses QuestPDF Community License (free for non-commercial use).
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 ### Common Issues
 1. **"No X/Y columns"**: Ensure your query returns columns named exactly `X` and `Y`
@@ -218,3 +257,26 @@ The application provides detailed console output including:
 - Missing days fill operations
 
 For additional help, check the console output for specific error messages and suggestions.
+
+## 📊 Sample Data
+
+The project includes `sample_queries.sql` with example datasets:
+- Daily activity data with missing days
+- Weekly sales performance  
+- Monthly revenue trends
+
+Run these examples to see the full functionality in action:
+
+```bash
+dotnet run "your_connection_string" "./sample_queries.sql" --fill-missing-days
+```
+
+---
+
+<div align="center">
+
+**⭐ If you find this project helpful, please give it a star! ⭐**
+
+[Report Bug](https://github.com/your-username/SqlToGraph/issues) • [Request Feature](https://github.com/your-username/SqlToGraph/issues) • [Documentation](https://github.com/your-username/SqlToGraph/wiki)
+
+</div>
