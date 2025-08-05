@@ -1,0 +1,79 @@
+# Build and runtime files
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.code-workspace
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# Test results
+TestResults/
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# Benchmark results
+BenchmarkDotNet.Artifacts/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Runtime files
+*.dll
+*.exe
+*.pdb
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Generated PDFs (unless specifically wanted for testing)
+SqlToGraph-*.pdf
+
+# Database connection strings (if any config files are added)
+appsettings.local.json
+*.config.user
+
+# IDE specific
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Runtime test files
+demo_test.cs.bak
+Program.cs.backup
