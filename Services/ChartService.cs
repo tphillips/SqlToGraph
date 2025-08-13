@@ -117,13 +117,13 @@ namespace SqlToGraph.Services
             plt.DataBackground.Color = ScottPlot.Colors.White;
 
             // Enhanced styling for higher resolution
-            plt.Axes.Title.Label.FontName = "Sans Serif";
+            plt.Axes.Title.Label.FontName = "Nimbus Sans";
             plt.Axes.Title.Label.FontSize = 16;
-            plt.Axes.Left.Label.FontName = "Sans Serif";
+            plt.Axes.Left.Label.FontName = "Nimbus Sans";
             plt.Axes.Left.Label.FontSize = 14;
-            plt.Axes.Bottom.Label.FontName = "Sans Serif";
+            plt.Axes.Bottom.Label.FontName = "Nimbus Sans";
             plt.Axes.Bottom.Label.FontSize = 14;
-            plt.Axes.Left.TickLabelStyle.FontName = "Sans Serif";
+            plt.Axes.Left.TickLabelStyle.FontName = "Nimbus Sans";
             plt.Axes.Left.TickLabelStyle.FontSize = 12;
             plt.Axes.Bottom.TickLabelStyle.FontSize = 12;
             
