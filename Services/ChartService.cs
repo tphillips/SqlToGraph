@@ -125,6 +125,7 @@ namespace SqlToGraph.Services
             plt.Axes.Bottom.Label.FontSize = 14;
             plt.Axes.Left.TickLabelStyle.FontName = "Nimbus Sans";
             plt.Axes.Left.TickLabelStyle.FontSize = 12;
+            plt.Axes.Bottom.TickLabelStyle.FontName = "Nimbus Sans";
             plt.Axes.Bottom.TickLabelStyle.FontSize = 12;
             
             // Anti-aliasing and quality settings
