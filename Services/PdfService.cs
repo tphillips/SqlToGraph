@@ -40,6 +40,8 @@ namespace SqlToGraph.Services
             .GeneratePdf(filename);
 
             Console.WriteLine($"PDF saved to: {Path.GetFullPath(filename)}");
+            File.Copy($"{Path.GetFullPath(filename)}", "Report.pdf", true);
+            Console.WriteLine($"And Report.pdf");
         }
 
         /// <summary>
@@ -142,7 +144,7 @@ namespace SqlToGraph.Services
                 {
                     chartColumn.Item().Text($"{point.X}: {point.Y:F2}")
                         .FontSize(9)
-                        .FontFamily("Courier New");
+                        .FontFamily("Sans Serif");
                 }
                 
                 if (sortedData.Count > 10)
