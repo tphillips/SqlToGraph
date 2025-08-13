@@ -143,8 +143,7 @@ namespace SqlToGraph.Services
                 foreach (var point in sortedData.Take(10))
                 {
                     chartColumn.Item().Text($"{point.X}: {point.Y:F2}")
-                        .FontSize(9)
-                        .FontFamily("Sans Serif");
+                        .FontSize(9);
                 }
                 
                 if (sortedData.Count > 10)
